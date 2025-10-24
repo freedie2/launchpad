@@ -13,18 +13,15 @@ public class LaunchpadApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
-
-        int widthScreen = (int) screenSize.getWidth();
-        int heightScreen = (int) screenSize.getHeight();
+//        Toolkit toolkit = Toolkit.getDefaultToolkit();
+//        Dimension screenSize = toolkit.getScreenSize();
+//
+//        int widthScreen = (int) screenSize.getWidth();
+//        int heightScreen = (int) screenSize.getHeight();
 
         FXMLLoader fxmlLoader = new FXMLLoader(LaunchpadApp.class.getResource("main-view.fxml"));
 
-        MainController controller = new MainController(widthScreen, heightScreen);
-        fxmlLoader.setController(controller);
-
-        Scene scene = new Scene(fxmlLoader.load(), widthScreen, heightScreen);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Launchpad");
         stage.setScene(scene);
         stage.show();

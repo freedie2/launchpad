@@ -4,24 +4,76 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="d.fomichev.launchpad.MainController">
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="d.fomichev.launchpad.MainController">
    <children>
-      <VBox alignment="CENTER">
+      <VBox fx:id="root" alignment="CENTER" style="-fx-background-color: #151719;">
          <children>
-            <Label contentDisplay="CENTER" text="Welcome to Launchpad" textAlignment="CENTER">
+            <Label fx:id="welcome_label" contentDisplay="CENTER" text="Welcome to Launchpad" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="43.0" />
                </font>
+               <textFill>
+                  <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.1847790777683258" green="0.21886642277240753" blue="0.34210526943206787" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.15886397119004747">
+                           <color>
+                              <Color red="0.4035087823867798" green="0.5245614051818848" blue="0.8070175647735596" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5080073116167402">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.8412997217220491">
+                           <color>
+                              <Color red="0.4000000059604645" green="0.5199999809265137" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.08490362018346786" green="0.1762760877609253" blue="0.28070175647735596" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
-            <Button id="button_start" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: none;" styleClass="button-67" stylesheets="@button_start_style.css" text="Начать работу" textAlignment="CENTER" textFill="#3e4bf4">
+            <Button onAction="#startWorking" fx:id="button_start" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: none;" text="Начать работу" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="19.0" />
                </font>
+               <textFill>
+                  <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4629088044166565" green="0.5203604698181152" blue="0.7280701994895935" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.49682162929011825">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.4651559591293335" green="0.5308845043182373" blue="0.7280701994895935" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Button>
          </children>
       </VBox>

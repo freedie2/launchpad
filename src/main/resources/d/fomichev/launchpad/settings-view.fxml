@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="d.fomichev.launchpad.SettingsController">
+   <children>
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutY="-3.0" prefHeight="600.0" prefWidth="1004.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.66668701171875" minWidth="10.0" prefWidth="317.33331298828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="708.0" minWidth="10.0" prefWidth="682.6666870117188" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Разрешение" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font>
+            </Label>
+             <ChoiceBox fx:id="choiceBox" onAction="#checkChoiceBox" prefWidth="708.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
