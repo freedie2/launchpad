@@ -19,6 +19,8 @@ import java.util.TimerTask;
 public class MainController {
 
     // another requires
+    private DBManager dbManager;
+
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
 
@@ -77,5 +79,9 @@ public class MainController {
         closeWelcomeWindow();
         openMainWindow();
 
+    }
+
+    public void setDbManager(DBManager dbm) {
+        dbManager = dbm;
     }
 }

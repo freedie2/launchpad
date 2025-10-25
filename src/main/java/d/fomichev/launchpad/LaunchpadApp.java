@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class LaunchpadApp extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
+
 
 //        Toolkit toolkit = Toolkit.getDefaultToolkit();
 //        Dimension screenSize = toolkit.getScreenSize();
@@ -26,7 +27,8 @@ public class LaunchpadApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-
+        MainController mainController = fxmlLoader.getController();
+        mainController.setDbManager(new DBManager());
     }
 
     public static void main(String[] args) {
