@@ -1,5 +1,7 @@
 package d.fomichev.launchpad;
 
+import javafx.scene.control.TextField;
+
 import java.sql.*;
 
 public class DBManager {
@@ -46,4 +48,43 @@ public class DBManager {
             System.out.println("Подключение не установлено");
         }
     }
+
+    public UserConfig checkUserConf(String username, String password) {
+        String selectSql = """
+                SELECT u.username, u.password, c.theme, c.language
+                FROM users u
+                JOIN configurations c ON u.id = c.user_id
+                WHERE u.username = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(selectSql)) {
+            stmt.setString(1, username);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String storedPassword = rs.getString("password");
+                    if (password.equals(storedPassword)) {
+                        return new UserConfig(
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("theme"),
+                                rs.getString("language")
+                        );
+                    } else {
+                        return null;
+                    }
+
+
+                } else {
+                    System.out.println("Пользователь '" + username + "' не найден или у него нет конфигурации.");
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при проверке пользователя: " + e.getMessage(), e);
+        }
+
+    }
+
+
 }

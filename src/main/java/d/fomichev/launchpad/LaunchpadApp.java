@@ -6,7 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 
 public class LaunchpadApp extends Application {
@@ -20,15 +23,18 @@ public class LaunchpadApp extends Application {
 //        int widthScreen = (int) screenSize.getWidth();
 //        int heightScreen = (int) screenSize.getHeight();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LaunchpadApp.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchpadApp.class.getResource("form-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Launchpad");
         stage.setScene(scene);
         stage.show();
 
-        MainController mainController = fxmlLoader.getController();
-        mainController.setDbManager(new DBManager());
+
+        FormController formController = fxmlLoader.getController();
+        formController.setDbManager(new DBManager());
+
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("assets/style.css")).toExternalForm());
     }
 
     public static void main(String[] args) {
