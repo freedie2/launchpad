@@ -44,7 +44,7 @@ public class FormController {
     public Label log_error_message;
 
 
-    // another requires
+    // other requires
     private DBManager dbManager;
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();

@@ -33,3 +33,44 @@
 .color-cell {
     -fx-background-radius: 10px;
 }
+
+
+
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 10px; /* ширина вертикального скроллбара */
+}
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-pref-height: 10px; /* высота горизонтального скроллбара */
+}
+
+/* Track (фон полосы прокрутки) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Thumb (бегунок) */
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: derive(#5a8bff, 30%); /* светло-синий */
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0.0, 0, 1);
+}
+
+/* Hover */
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #5a8bff;
+}
+
+/* Pressed */
+.scroll-pane .scroll-bar .thumb:pressed {
+    -fx-background-color: #3a6bdd;
+}
+
+/* Скрыть стрелки (если не нужны) */
+.scroll-pane .increment-button,
+.scroll-pane .decrement-button {
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}

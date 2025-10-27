@@ -23,7 +23,7 @@ public class LaunchpadApp extends Application {
 //        int widthScreen = (int) screenSize.getWidth();
 //        int heightScreen = (int) screenSize.getHeight();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LaunchpadApp.class.getResource("form-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchpadApp.class.getResource("main-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Launchpad");
@@ -31,8 +31,11 @@ public class LaunchpadApp extends Application {
         stage.show();
 
 
-        FormController formController = fxmlLoader.getController();
-        formController.setDbManager(new DBManager());
+//        FormController formController = fxmlLoader.getController();
+//        formController.setDbManager(new DBManager());
+
+        MainController mainController = fxmlLoader.getController();
+//        mainController.setDbManager(new DBManager());
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("assets/style.css")).toExternalForm());
     }
