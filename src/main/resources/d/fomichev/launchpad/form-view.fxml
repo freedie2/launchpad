@@ -32,6 +32,9 @@
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
+                                 <font>
+                                    <Font name="Century Gothic" size="12.0" />
+                                 </font>
                               </TextField>
                               <TextField fx:id="passwordField" promptText="Password" style="-fx-pref-width: 100;">
                                  <VBox.margin>
@@ -83,9 +86,9 @@
             <!-- Правая панель -->
             <AnchorPane fx:id="rightPanelForm" prefHeight="371.0" prefWidth="445.0" style="-fx-padding: 0;">
                <children>
-                  <VBox alignment="CENTER" layoutY="-1.0" prefHeight="371.0" prefWidth="483.0" styleClass="full-bg-vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="BOTTOM_CENTER" layoutY="-1.0" prefHeight="371.0" prefWidth="483.0" styleClass="full-bg-vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <GridPane alignment="CENTER" gridLinesVisible="true" hgap="6" styleClass="matrix" vgap="6">
+                        <GridPane alignment="CENTER" hgap="6" styleClass="matrix" vgap="6">
 
                            <!-- Row 1 -->
                            <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: dimgray;" styleClass="color-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -97,7 +100,7 @@
                                  </InnerShadow>
                               </effect>
                            </Pane>
-                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: darkslategray;" styleClass="color-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: royalblue;" styleClass="color-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
                               <effect>
                                  <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
                                     <color>
@@ -106,7 +109,7 @@
                                  </InnerShadow>
                               </effect>
                            </Pane>
-                              
+
                            <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: midnightblue;" styleClass="color-cell" GridPane.columnIndex="2" GridPane.rowIndex="0">
                               <effect>
                                  <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
@@ -138,18 +141,18 @@
                            </Pane>
                            <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: dimgray;" styleClass="color-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
                               <effect>
-                                 <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
+                                 <InnerShadow blurType="GAUSSIAN" height="49.23" radius="15.5975" width="15.16">
                                     <color>
-                                       <Color red="0.2719298303127289" green="0.2719298303127289" blue="0.2719298303127289" />
+                                       <Color red="0.3947368562221527" green="0.3837719261646271" blue="0.3837719261646271" />
                                     </color>
                                  </InnerShadow>
                               </effect>
                            </Pane>
-                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: darkslategray;" styleClass="color-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: royalblue;" styleClass="color-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
                               <effect>
-                                 <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
+                                 <InnerShadow blurType="GAUSSIAN" height="49.23" radius="15.5975" width="15.16">
                                     <color>
-                                       <Color red="0.2719298303127289" green="0.2719298303127289" blue="0.2719298303127289" />
+                                       <Color red="0.3947368562221527" green="0.3837719261646271" blue="0.3837719261646271" />
                                     </color>
                                  </InnerShadow>
                               </effect>
@@ -176,18 +179,18 @@
                            </Pane>
                            <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: midnightblue;" styleClass="color-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
                               <effect>
-                                 <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
+                                 <InnerShadow blurType="GAUSSIAN" height="49.23" radius="15.5975" width="15.16">
                                     <color>
-                                       <Color red="0.2719298303127289" green="0.2719298303127289" blue="0.2719298303127289" />
+                                       <Color red="0.3947368562221527" green="0.3837719261646271" blue="0.3837719261646271" />
                                     </color>
                                  </InnerShadow>
                               </effect>
                            </Pane>
-                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: darkslategray;" styleClass="color-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: royalblue;" styleClass="color-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
                               <effect>
-                                 <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
+                                 <InnerShadow blurType="GAUSSIAN" height="49.23" radius="15.5975" width="15.16">
                                     <color>
-                                       <Color red="0.2719298303127289" green="0.2719298303127289" blue="0.2719298303127289" />
+                                       <Color red="0.3947368562221527" green="0.3837719261646271" blue="0.3837719261646271" />
                                     </color>
                                  </InnerShadow>
                               </effect>
@@ -230,7 +233,7 @@
                                  </InnerShadow>
                               </effect>
                            </Pane>
-                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: darkslategray;" styleClass="color-cell" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <Pane prefHeight="40" prefWidth="40" style="-fx-background-color: royalblue;" styleClass="color-cell" GridPane.columnIndex="3" GridPane.rowIndex="3">
                               <effect>
                                  <InnerShadow blurType="GAUSSIAN" height="48.25" radius="24.1125" width="50.2">
                                     <color>
@@ -254,6 +257,7 @@
                            </rowConstraints>
 
                         </GridPane>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
