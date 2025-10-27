@@ -10,9 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -21,6 +18,12 @@ import java.util.TimerTask;
 
 public class FormController {
     // FXML objects
+
+    @FXML
+    public Button button_reg;
+
+    @FXML
+    public Label login_label;
 
     @FXML
     private SplitPane root;
@@ -115,5 +118,42 @@ public class FormController {
 
     public void setDbManager(DBManager dbm) {
         dbManager = dbm;
+    }
+
+    public void regUser(ActionEvent actionEvent) {
+        login_label.setText("Log Up");
+        button_start.setVisible(false);
+        button_reg.setText("Нажмите ещё раз, чтобы зарегистрироваться");
+
+
+        UserConfig userConfig = new UserConfig(usernameField.getText(), passwordField.getText(), "dark", "ru");
+
+
+        try {
+            log_error_message.setVisible(false);
+            if (userConfig.getUsername().isEmpty() || userConfig.getPassword().isEmpty()) {
+                log_error_message.setText("Не оставляйте поля пустыми. Им одиноко");
+                log_error_message.setVisible(true);
+                return;
+            }
+
+            UserConfig configCheck = dbManager.checkUserConf(userConfig.getUsername(), userConfig.getPassword());
+
+            if (configCheck != null) {
+                log_error_message.setText("Пользователь уже существует");
+                log_error_message.setVisible(true);
+                System.out.println("Пользователь " + configCheck.getUsername() + "уже существует.");
+            } else {
+                dbManager.createNewUser(userConfig);
+                System.out.println("Пользователь создан: " + userConfig.getUsername());
+
+                login_label.setText("Log In");
+                button_start.setVisible(true);
+                button_reg.setText("Зарегистрироваться");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

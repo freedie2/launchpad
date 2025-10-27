@@ -86,5 +86,27 @@ public class DBManager {
 
     }
 
+    public void createNewUser(UserConfig userConfig) throws Exception {
+        String insertSql = String.format("""
+                WITH new_user AS (
+                    INSERT INTO users (username, password)
+                    VALUES ('%s', '%s')
+                    RETURNING id
+                )
+                INSERT INTO configurations (user_id, theme, language)
+                SELECT id, 'dark', 'ru'
+                FROM new_user;
+                """, userConfig.getUsername(), userConfig.getPassword());
+
+        try (var st = connection.prepareStatement(insertSql)){
+            int cnt = st.executeUpdate();
+            System.out.println("Добавлен пользовтель: " + cnt);
+        } catch (SQLException e) {
+            System.out.println("Ошибка при добавлении: " + e.getMessage());
+            throw new Exception(e);
+        }
+
+    }
+
 
 }
