@@ -4,17 +4,24 @@ package d.fomichev.launchpad;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.prefs.Preferences;
 
 public class FormController {
     // FXML objects
@@ -46,13 +53,14 @@ public class FormController {
 
     // other requires
     private DBManager dbManager;
+    private Stage primaryStage;
+
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
 
     int widthScreen = (int) screenSize.getWidth();
     int heightScreen = (int) screenSize.getHeight();
-
 
 
     // Methods
@@ -62,30 +70,26 @@ public class FormController {
 
     }
 
-    public void fadeOut(Node node) {
-        FadeTransition fadeOutLabel = new FadeTransition(Duration.seconds(1), node);
-        fadeOutLabel.setToValue(0.0);
-        fadeOutLabel.setOnFinished(_ -> {
-            node.setVisible(false);
-        });
-        fadeOutLabel.play();
-    }
+    public void openMainWindow(ActionEvent event) throws Exception {
+        // Загружаем главное окно
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
 
-    public void closeWelcomeWindow() {
-        fadeOut(root);
-    }
+        MainController mainController = loader.getController();
+        mainController.setDbManager(new DBManager());
 
-    public void openMainWindow() {
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), welcome_label);
-                    fadeIn.setFromValue(0.0);
-                    fadeIn.setToValue(1.0);
-                    fadeIn.play();
-                }
-            }, 1200);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("assets/style.css")).toExternalForm());
+
+        Stage mainStage = new Stage();
+        mainStage.setTitle("Главная");
+        mainStage.setScene(scene);
+        mainStage.show();
+
+        // Закрываем первое окно
+        if (primaryStage != null) {
+            primaryStage.close();
+        }
     }
 
     @FXML
@@ -103,13 +107,12 @@ public class FormController {
             UserConfig config = dbManager.checkUserConf(username, password);
             if (config != null) {
                 System.out.println("Вход выполнен: " + config.getUsername());
-                closeWelcomeWindow();
-//                openMainWindow();
+                openMainWindow(actionEvent);
             } else {
                 // Пользователь не найден
                 log_error_message.setVisible(true);
             }
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             // Ошибка подключения к БД и т.д.
 
             e.printStackTrace();
@@ -155,5 +158,11 @@ public class FormController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
+
+    public void setPrimaryStage(Stage stage) {
+        primaryStage = stage;
+    }
+
 }

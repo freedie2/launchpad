@@ -6,6 +6,7 @@ module d.fomichev.launchpad {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires java.sql;
+    requires java.prefs;
 
     opens d.fomichev.launchpad to javafx.fxml;
     exports d.fomichev.launchpad;

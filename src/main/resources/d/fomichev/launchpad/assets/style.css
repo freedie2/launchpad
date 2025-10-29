@@ -74,3 +74,44 @@
     -fx-padding: 0;
     -fx-opacity: 0;
 }
+
+
+
+
+
+
+.buttonMainBar {
+    letter-spacing: 0;
+}
+
+.buttonMainBar:hover,
+.buttonMainBar:active {
+  letter-spacing: 5px;
+}
+
+.buttonMainBar:after,
+.buttonMainBar:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.buttonMainBar:hover:after,
+.buttonMainBar:hover:before {
+  backface-visibility: hidden;
+  border-color: #fff;
+  transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.buttonMainBar:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}

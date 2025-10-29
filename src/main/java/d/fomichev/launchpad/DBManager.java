@@ -21,7 +21,6 @@ public class DBManager {
         try {
             String user = "postgres";
             String password = "2702";
-
             String url = "jdbc:postgresql://localhost:5432/db";
 
             connection = DriverManager.getConnection(url, user, password);
