@@ -1,10 +1,9 @@
 package d.fomichev.launchpad;
 
-import javafx.scene.control.TextField;
-
 import java.sql.*;
 
 public class DBManager {
+
 
     private Connection connection;
 
@@ -48,7 +47,7 @@ public class DBManager {
         }
     }
 
-    public UserConfig checkUserConf(String username, String password) {
+    public UserEntity checkUserConf(String username, String password) {
         String selectSql = """
                 SELECT u.username, u.password, c.theme, c.language
                 FROM users u
@@ -63,7 +62,7 @@ public class DBManager {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password");
                     if (password.equals(storedPassword)) {
-                        return new UserConfig(
+                        return new UserEntity(
                                 rs.getString("username"),
                                 rs.getString("password"),
                                 rs.getString("theme"),
@@ -85,7 +84,7 @@ public class DBManager {
 
     }
 
-    public void createNewUser(UserConfig userConfig) throws Exception {
+    public void createNewUser(UserEntity userEntity) throws Exception {
         String insertSql = String.format("""
                 WITH new_user AS (
                     INSERT INTO users (username, password)
@@ -95,7 +94,7 @@ public class DBManager {
                 INSERT INTO configurations (user_id, theme, language)
                 SELECT id, 'dark', 'ru'
                 FROM new_user;
-                """, userConfig.getUsername(), userConfig.getPassword());
+                """, userEntity.getUsername(), userEntity.getPassword());
 
         try (var st = connection.prepareStatement(insertSql)){
             int cnt = st.executeUpdate();

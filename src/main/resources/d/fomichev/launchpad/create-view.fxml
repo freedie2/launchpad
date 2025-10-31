@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="d.fomichev.launchpad.CreateController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<SplitPane dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="d.fomichev.launchpad.CreateController">
+  <items>
+      <VBox alignment="BASELINE_CENTER" prefHeight="397.0" prefWidth="300.0" style="-fx-background-color: #151719;">
+         <children>
+            <Label alignment="TOP_CENTER" text="Свойства">
+               <font>
+                  <Font name="Century Gothic" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="397.0" prefWidth="398.0">
+         <children>
+            <Label text="Label">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+  </items>
+</SplitPane>

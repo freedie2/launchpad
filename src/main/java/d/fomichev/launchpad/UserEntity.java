@@ -1,13 +1,13 @@
 package d.fomichev.launchpad;
 
 // Простой класс для хранения данных пользователя и его конфигурации
-public class UserConfig {
+public class UserEntity {
     private final String username;
     private final String password;
     private final String theme;
     private final String language;
 
-    public UserConfig(String username, String password, String theme, String language) {
+    public UserEntity(String username, String password, String theme, String language) {
         this.username = username;
         this.password = password;
         this.theme = theme;

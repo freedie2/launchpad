@@ -1,27 +1,24 @@
 package d.fomichev.launchpad;
 
 
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.prefs.Preferences;
+import java.util.Properties;
 
 public class FormController {
     // FXML objects
@@ -31,6 +28,9 @@ public class FormController {
 
     @FXML
     public Label login_label;
+
+    @FXML
+    public CheckBox rememberMe;
 
     @FXML
     private SplitPane root;
@@ -54,6 +54,7 @@ public class FormController {
     // other requires
     private DBManager dbManager;
     private Stage primaryStage;
+    private static final String CONFIG_FILE = "db.config";
 
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -67,6 +68,8 @@ public class FormController {
     public void initialize() {
         root.setMaxSize(widthScreen, heightScreen);
         root.setPrefSize(1000, 600);
+
+        loadConfig();
 
     }
 
@@ -98,15 +101,19 @@ public class FormController {
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
 
+        Properties config = saveConfig();
+
         if (username.isEmpty() || password.isEmpty()) {
             log_error_message.setVisible(true);
             return;
         }
 
         try {
-            UserConfig config = dbManager.checkUserConf(username, password);
-            if (config != null) {
-                System.out.println("Вход выполнен: " + config.getUsername());
+            UserEntity entity = dbManager.checkUserConf(username, password);
+            if (entity != null) {
+                System.out.println("Вход выполнен: " + entity.getUsername());
+                config.getProperty("user.name");
+                config.getProperty("user.password");
                 openMainWindow(actionEvent);
             } else {
                 // Пользователь не найден
@@ -129,26 +136,26 @@ public class FormController {
         button_reg.setText("Нажмите ещё раз, чтобы зарегистрироваться");
 
 
-        UserConfig userConfig = new UserConfig(usernameField.getText(), passwordField.getText(), "dark", "ru");
+        UserEntity userEntity = new UserEntity(usernameField.getText(), passwordField.getText(), "dark", "ru");
 
 
         try {
             log_error_message.setVisible(false);
-            if (userConfig.getUsername().isEmpty() || userConfig.getPassword().isEmpty()) {
+            if (userEntity.getUsername().isEmpty() || userEntity.getPassword().isEmpty()) {
                 log_error_message.setText("Не оставляйте поля пустыми. Им одиноко");
                 log_error_message.setVisible(true);
                 return;
             }
 
-            UserConfig configCheck = dbManager.checkUserConf(userConfig.getUsername(), userConfig.getPassword());
+            UserEntity configCheck = dbManager.checkUserConf(userEntity.getUsername(), userEntity.getPassword());
 
             if (configCheck != null) {
                 log_error_message.setText("Пользователь уже существует");
                 log_error_message.setVisible(true);
                 System.out.println("Пользователь " + configCheck.getUsername() + "уже существует.");
             } else {
-                dbManager.createNewUser(userConfig);
-                System.out.println("Пользователь создан: " + userConfig.getUsername());
+                dbManager.createNewUser(userEntity);
+                System.out.println("Пользователь создан: " + userEntity.getUsername());
 
                 login_label.setText("Log In");
                 button_start.setVisible(true);
@@ -163,6 +170,42 @@ public class FormController {
 
     public void setPrimaryStage(Stage stage) {
         primaryStage = stage;
+    }
+
+
+    private Properties saveConfig() {
+        Properties props = new Properties();
+
+        String username = usernameField.getText().trim();
+        String userpass = passwordField.getText().trim();
+
+        props.setProperty("user.name", username);
+        props.setProperty("user.password", userpass);
+
+
+        try (OutputStream out = new FileOutputStream(CONFIG_FILE)) {
+            props.store(out, "Конфигурация БД сохранена " + java.time.LocalDateTime.now());
+            System.out.println("Конфигурация сохранена в " + CONFIG_FILE);
+        } catch (IOException e) {
+            System.err.println("Не удалось сохранить конфиг: " + e.getMessage());
+        }
+
+        return props;
+    }
+
+    //    Функция автоматической выгрузки данных из конфига в форму, при условии наличия самого конфига
+    public void loadConfig() {
+        try (InputStream in = new FileInputStream(CONFIG_FILE)) {
+            Properties props = new Properties();
+            props.load(in);
+
+            usernameField.setText(props.getProperty("user.name", ""));
+            passwordField.setText(props.getProperty("user.password", ""));
+
+            System.out.println("Конфиг загружен в форму.");
+        } catch (IOException e) {
+            System.err.println("Не удалось загрузить конфиг: " + e.getMessage());
+        }
     }
 
 }

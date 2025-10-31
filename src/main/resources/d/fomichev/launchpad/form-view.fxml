@@ -22,6 +22,30 @@
                               <Font name="Century Gothic" size="30.0" />
                            </font>
                         </Label>
+                        <Button fx:id="button_reg" mnemonicParsing="false" onAction="#regUser" style="-fx-background-color: none;" text="Зарегистрироватсья" textAlignment="CENTER">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3604072034358978" green="0.41559454798698425" blue="0.9122806787490845" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.4475308656692505" green="0.7513889074325562" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
                            <children>
                               <Label fx:id="log_error_message" text="Неверные данные. Повторите попытку" textFill="#ff6666" visible="false" />
@@ -47,27 +71,11 @@
                                     <Font name="Century Gothic" size="12.0" />
                                  </font>
                               </TextField>
-                              <Button onAction="#regUser" fx:id="button_reg" mnemonicParsing="false" style="-fx-background-color: none;" text="Зарегистрироватсья" textAlignment="CENTER">
+                              <CheckBox fx:id="rememberMe" mnemonicParsing="false" selected="true" text="Запомнить меня" textFill="WHITE">
                                  <font>
                                     <Font name="Century Gothic" size="12.0" />
                                  </font>
-                                 <textFill>
-                                    <LinearGradient endX="1.0" endY="1.0">
-                                       <stops>
-                                          <Stop>
-                                             <color>
-                                                <Color red="0.3604072034358978" green="0.41559454798698425" blue="0.9122806787490845" />
-                                             </color>
-                                          </Stop>
-                                          <Stop offset="1.0">
-                                             <color>
-                                                <Color red="0.4475308656692505" green="0.7513889074325562" blue="1.0" />
-                                             </color>
-                                          </Stop>
-                                       </stops>
-                                    </LinearGradient>
-                                 </textFill>
-                              </Button>
+                              </CheckBox>
                            </children>
                         </VBox>
                         <Button fx:id="button_start" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startWorking" style="-fx-background-color: none;" text="Начать работу" textAlignment="CENTER">
