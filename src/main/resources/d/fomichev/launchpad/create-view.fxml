@@ -1,28 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="d.fomichev.launchpad.CreateController">
+<SplitPane fx:id="root" dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="d.fomichev.launchpad.CreateController">
   <items>
-      <VBox alignment="BASELINE_CENTER" prefHeight="397.0" prefWidth="300.0" style="-fx-background-color: #151719;">
+      <VBox alignment="CENTER" prefHeight="397.0" prefWidth="300.0" style="-fx-background-color: #151719;">
          <children>
-            <Label alignment="TOP_CENTER" text="Свойства">
-               <font>
-                  <Font name="Century Gothic" size="19.0" />
-               </font>
-            </Label>
+            <VBox alignment="TOP_CENTER" prefHeight="4.0" prefWidth="207.0">
+               <children>
+                  <Label alignment="TOP_CENTER" text="Свойства">
+                     <font>
+                        <Font name="Century Gothic" size="19.0" />
+                     </font>
+                      <textFill>
+                          <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                              <stops>
+                                  <Stop>
+                                      <color>
+                                          <Color red="0.4629088044166565" green="0.5203604698181152" blue="0.7280701994895935" />
+                                      </color>
+                                  </Stop>
+                                  <Stop offset="0.49682162929011825">
+                                      <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                      </color>
+                                  </Stop>
+                                  <Stop offset="1.0">
+                                      <color>
+                                          <Color red="0.4651559591293335" green="0.5308845043182373" blue="0.7280701994895935" />
+                                      </color>
+                                  </Stop>
+                              </stops>
+                          </LinearGradient>
+                      </textFill>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="244.0" prefWidth="207.0" spacing="5.0">
+               <children>
+                  <Button fx:id="appBtn" mnemonicParsing="false" onAction="#openAppWindows" style="-fx-background-color: none;" text="Приложения" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                   <Button fx:id="brsBtn" mnemonicParsing="false" onAction="#openBrowserWindows" style="-fx-background-color: none;" text="Браузерные вкладки" textFill="WHITE">
+                       <font>
+                           <Font name="Century Gothic" size="12.0" />
+                       </font>
+                       <cursor>
+                           <Cursor fx:constant="HAND" />
+                       </cursor>
+                       <VBox.margin>
+                           <Insets />
+                       </VBox.margin>
+                       <padding>
+                           <Insets bottom="3.0" top="3.0" />
+                       </padding>
+                   </Button>
+                  <Button fx:id="algBtn" mnemonicParsing="false" onAction="#openAlignment" style="-fx-background-color: none;" text="Положение" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="binBtn" mnemonicParsing="false" onAction="#openBindings" style="-fx-background-color: none;" text="Сочетания клавиш" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="adtBtn" mnemonicParsing="false" onAction="#openAdditionally" style="-fx-background-color: none;" text="Дополнительно" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="3.0" top="3.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="101.0" prefWidth="207.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveAndCloseConfig" style="-fx-background-color: none;" text="Сохранить и закрыть" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="15.0" />
+                     </font>
+                      <textFill>
+                          <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                              <stops>
+                                  <Stop>
+                                      <color>
+                                          <Color red="0.4629088044166565" green="0.5203604698181152" blue="0.7280701994895935" />
+                                      </color>
+                                  </Stop>
+                                  <Stop offset="0.2794450834814737">
+                                      <color>
+                                          <Color red="0.6017909646034241" green="0.5855262875556946" blue="0.780701756477356" />
+                                      </color>
+                                  </Stop>
+                                  <Stop offset="0.5400786267455889">
+                                      <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                      </color>
+                                  </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.44054579734802246" green="0.3793588876724243" blue="0.9912280440330505" />
+                                 </color>
+                              </Stop>
+                              </stops>
+                          </LinearGradient>
+                      </textFill>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="397.0" prefWidth="398.0">
+      <StackPane fx:id="content" prefHeight="400.0" prefWidth="319.0" style="-fx-background-color: #242424;">
          <children>
-            <Label text="Label">
-               <font>
-                  <Font name="Century Gothic" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
+            <VBox fx:id="appWindows" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="browserWindows" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="alignment" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="bindings" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="additionally" prefHeight="200.0" prefWidth="100.0" />
+         </children></StackPane>
   </items>
 </SplitPane>
