@@ -7,9 +7,9 @@
 
 <AnchorPane style="-fx-background-color: #151719;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="d.fomichev.launchpad.MainController">
    <children>
-      <VBox fx:id="root" alignment="TOP_CENTER" style="-fx-background-color: #151719;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <VBox fx:id="root" alignment="TOP_CENTER" style="-fx-background-color:#151719;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
          <children>
-            <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #0d232e;">
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #151719;">
                <items>
                   <Button mnemonicParsing="false" onAction="#openSettings" styleClass="buttonMainBar" text="Settings">
                      <cursor><Cursor fx:constant="HAND" /></cursor>
@@ -26,9 +26,9 @@
                </items>
             </ToolBar>
 
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #151719;">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #242424;">
                <content>
-                  <GridPane fx:id="gridPane" style="-fx-background-color: transparent;">
+                  <GridPane fx:id="gridPane" style="-fx-background-color: none;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />

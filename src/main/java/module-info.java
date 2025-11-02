@@ -7,6 +7,8 @@ module d.fomichev.launchpad {
     requires java.desktop;
     requires java.sql;
     requires java.prefs;
+    requires com.sun.jna.platform;
+    requires com.sun.jna;
 
     opens d.fomichev.launchpad to javafx.fxml;
     exports d.fomichev.launchpad;
