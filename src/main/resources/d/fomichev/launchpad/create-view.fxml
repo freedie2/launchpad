@@ -151,63 +151,101 @@
       </VBox>
       <StackPane fx:id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="319.0" style="-fx-background-color: #242424;">
          <children>
-            <VBox fx:id="appWindows" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;">
-               <children>
-                  <VBox prefHeight="400.0" prefWidth="100.0">
+            <ScrollPane fx:id="appWindows" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #242424;">
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="385.0" style="-fx-background-color: #242424;">
                      <children>
-                        <Label text="List of apps" textFill="WHITE">
-                           <font>
-                              <Font name="Century Gothic" size="12.0" />
-                           </font>
-                        </Label>
-                        <GridPane fx:id="gridApps" prefHeight="184.0" prefWidth="307.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
+                        <VBox fx:id="listOfApps" prefHeight="512.0" prefWidth="307.0">
+                           <children>
+                              <Label text="List of apps" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <GridPane fx:id="gridApps" prefHeight="245.0" prefWidth="307.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vboxFindPath" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Find by path" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#openFile" style="-fx-background-color: #151719; -fx-border-radius: 15;" text="Поиск" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </padding>
+                                    </Button>
+                                    <Label fx:id="pathFile" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" onAction="#buttonSelect" prefWidth="70.0" style="-fx-background-color: #151719; -fx-border-radius: 15;" text="Выбрать" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#buttonNext" prefWidth="70.0" style="-fx-background-color: #151719; -fx-border-radius: 15;" text="Далее" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+                     </padding>
                   </VBox>
-                  <VBox fx:id="vboxFindPath" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Find by path" textFill="WHITE">
-                           <font>
-                              <Font name="Century Gothic" size="12.0" />
-                           </font></Label>
-                     </children>
-                  </VBox>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                     <children>
-                        <Button disable="true" mnemonicParsing="false" onAction="#buttonSelect" prefWidth="70.0" style="-fx-background-color: #151719; -fx-border-radius: 15;" text="Выбрать" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button mnemonicParsing="false" onAction="#buttonNext" prefWidth="70.0" style="-fx-background-color: #151719; -fx-border-radius: 15;" text="Далее" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-               <padding>
-                  <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
-               </padding></VBox>
-            <VBox fx:id="browserWindows" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;" visible="false" />
+               </content>
+            </ScrollPane>
+            <ScrollPane fx:id="browserWindows" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;" visible="false" />
+               </content>
+            </ScrollPane>
             <VBox fx:id="alignment" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;" visible="false" />
             <VBox fx:id="bindings" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;" visible="false" />
             <VBox fx:id="additionally" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #242424;" visible="false" />
