@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -58,6 +59,8 @@ public class CreateController {
     public VBox listOfApps;
     @FXML
     public Label pathFile;
+    @FXML
+    public Button nextBtn;
 
     // Other requires
     private DBManager dbManager;
@@ -68,18 +71,6 @@ public class CreateController {
 
     int widthScreen = (int) screenSize.getWidth();
     int heightScreen = (int) screenSize.getHeight();
-
-    public void openFile(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Выберите файл");
-
-        File selectedFile = fileChooser.showOpenDialog(primaryStage);
-
-        if (selectedFile != null) {
-            System.out.println("Выбран файл: " + selectedFile.getAbsolutePath());
-            pathFile.setText(selectedFile.getAbsolutePath());
-        }
-    }
 
     public enum Category {
         BROWSER, OFFICE, MEDIA, GAME, DEV, SYSTEM, DEFAULT
@@ -101,65 +92,7 @@ public class CreateController {
         appBtn.setStyle("-fx-background-color: #242424;");
 
         // Загрузка найденных приложений в GridPane
-        List<AppEntity> apps = findApplicationsNames();
-        int max = apps.size();
-
-        gridApps.getChildren().clear();
-
-        double cellMinHeight = 80;
-
-        int sizeGroups = (max + 4) / 5;
-
-        for (int i = 0; i < sizeGroups; i++) {
-            RowConstraints rc = new RowConstraints();
-            rc.setMinHeight(cellMinHeight);
-            rc.setPrefHeight(cellMinHeight);
-            rc.setMaxHeight(Double.MAX_VALUE);
-            gridApps.getRowConstraints().add(rc);
-        }
-
-        gridApps.setHgap(30);
-        gridApps.setVgap(30);
-
-
-        int[] listHeights = {
-                800, 850, 900, 950, 1000,
-                1050, 1100, 1150, 1200, 1250,
-                1200, 1350, 1400, 1450, 1500,
-                1550
-        };
-
-        int idx = Math.min(sizeGroups - 1, 15);
-
-        listOfApps.setMinHeight(listHeights[idx]);
-
-        for (int i = 0; i < max; i++) {
-            AppEntity app = apps.get(i);
-
-            Category category = detectCategory(app.getName());
-
-            Image icon = CategoryIconLoader.loadIcon(category);
-
-            ImageView imageView = new ImageView(icon);
-            imageView.setFitWidth(48);
-            imageView.setFitHeight(48);
-            imageView.setPreserveRatio(true);
-
-            Label label = new Label(app.getName());
-            label.setWrapText(true);
-            label.setMaxWidth(80);
-            label.setAlignment(Pos.CENTER);
-            label.setStyle("-fx-text-fill: white;");
-
-            VBox container = new VBox(0, imageView, label);
-            container.setAlignment(Pos.CENTER);
-
-            GridPane.setRowIndex(container, i / 5);
-            GridPane.setColumnIndex(container, i % 5);
-            gridApps.getChildren().add(container);
-
-
-        }
+        uploadFindApps();
 
         // Загрузка найденных браузеров в GridPane
         findBrowsers();
@@ -312,14 +245,96 @@ public class CreateController {
         return Category.DEFAULT;
     }
 
+    public void uploadFindApps() {
+        List<AppEntity> apps = findApplicationsNames();
+        int max = apps.size();
+
+        gridApps.getChildren().clear();
+
+        double cellMinHeight = 80;
+
+        int sizeGroups = (max + 4) / 5;
+
+        for (int i = 0; i < sizeGroups; i++) {
+            RowConstraints rc = new RowConstraints();
+            rc.setMinHeight(cellMinHeight);
+            rc.setPrefHeight(cellMinHeight);
+            rc.setMaxHeight(Double.MAX_VALUE);
+            gridApps.getRowConstraints().add(rc);
+        }
+
+        gridApps.setHgap(30);
+        gridApps.setVgap(30);
+
+
+        int[] listHeights = {
+                800, 850, 900, 950, 1000,
+                1050, 1100, 1150, 1200, 1250,
+                1200, 1350, 1400, 1450, 1500,
+                1550
+        };
+
+        int idx = Math.min(sizeGroups - 1, 15);
+
+        listOfApps.setMinHeight(listHeights[idx]);
+
+        for (int i = 0; i < max; i++) {
+            AppEntity app = apps.get(i);
+
+            Category category = detectCategory(app.getName());
+
+            Image icon = CategoryIconLoader.loadIcon(category);
+
+            ImageView imageView = new ImageView(icon);
+            imageView.setFitWidth(48);
+            imageView.setFitHeight(48);
+            imageView.setPreserveRatio(true);
+
+            Label label = new Label(app.getName());
+            label.setWrapText(true);
+            label.setMaxWidth(80);
+            label.setAlignment(Pos.CENTER);
+            label.setStyle("-fx-text-fill: white;");
+
+            VBox container = new VBox(0, imageView, label);
+            container.setAlignment(Pos.CENTER);
+
+            GridPane.setRowIndex(container, i / 5);
+            GridPane.setColumnIndex(container, i % 5);
+            gridApps.getChildren().add(container);
+
+
+        }
+    }
+
 
     public void findBrowsers() {
         // FIXME: JNA Windows with find by name of common browsers
+    }
+
+    public void openFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter fileFilter = new FileChooser.ExtensionFilter("Executables files", "*.exe");
+        fileChooser.getExtensionFilters().add(fileFilter);
+
+        fileChooser.setTitle("Выберите файл");
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            System.out.println("Выбран файл: " + selectedFile.getAbsolutePath());
+            pathFile.setText(selectedFile.getAbsolutePath());
+        }
     }
 
     public void buttonSelect(ActionEvent event) {
     }
 
     public void buttonNext(ActionEvent event) {
+
+    }
+
+    public void nextBtnHoverEffect(MouseDragEvent mouseDragEvent) {
+        nextBtn.setPrefHeight(30);
     }
 }
